@@ -17,3 +17,6 @@ Clone to a role directory like `roles/msmtp` and include:
           # to use an app password or other revokable token.
           msmtp_user: foo
           msmtp_password: secret_password
+          # Optional variables (defaults to gmail)
+          msmtp_host: smtp.gmail.com
+          msmtp_port: 587
