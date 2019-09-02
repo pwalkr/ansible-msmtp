@@ -1,0 +1,9 @@
+- name: Install msmtp
+  apt:
+    name: msmtp
+
+- name: Install msmtp config
+  template:
+    src: msmtprc.j2
+    dest: /etc/msmtprc
+    mode: '0644'
