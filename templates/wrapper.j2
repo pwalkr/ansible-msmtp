@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# msmtp wrapper that records arguments and inputs. If an incompatibility is
+# found (options difference between msmtp and mail, sendmail, etc.) then this
+# script should be updated to compensate.
+
+msmtp="/usr/bin/msmtp"
+logdir="{{ logdir }}"
+
+timestamp="$(date +%s)"
+
+args_log="$logdir/${timestamp}-args.log"
+stdin_log="$logdir/${timestamp}-stdin.log"
+
+echo "+ $(basename "$0")" "$@" > "$args_log"
+while read -t 1 line; do
+    echo "$line" >> "$stdin_log"
+done < /dev/stdin
+
+cat "$stdin_log" | $msmtp "$@"

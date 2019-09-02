@@ -7,3 +7,27 @@
     src: msmtprc.j2
     dest: /etc/msmtprc
     mode: '0644'
+
+# Create handlers for other mail utilities
+
+- stat:
+    path: /usr/bin/mail
+  register: mail
+
+- name: Create symlink from mail to msmtp
+  file:
+    src: /usr/bin/msmtp
+    dest: /usr/bin/mail
+    state: link
+  when: mail.stat.exists == false
+
+- stat:
+    path: /usr/sbin/sendmail
+  register: sendmail
+
+- name: Create symlink from sendmail to msmtp
+  file:
+    src: /usr/bin/msmtp
+    dest: /usr/sbin/sendmail
+    state: link
+  when: sendmail.stat.exists == false
