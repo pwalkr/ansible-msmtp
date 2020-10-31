@@ -1,0 +1,5 @@
+- name: Install msmtp config
+  template:
+    src: msmtprc.j2
+    dest: '{{ msmtprc_dest }}'
+    mode: '0644'

@@ -2,11 +2,9 @@
   package:
     name: msmtp
 
-- name: Install msmtp config
-  template:
-    src: msmtprc.j2
-    dest: /etc/msmtprc
-    mode: '0644'
+- include_tasks: msmtprc.yml
+  vars:
+    msmtprc_dest: /etc/msmtprc
 
 # Create handlers for other mail utilities
 
