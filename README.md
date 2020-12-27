@@ -20,5 +20,7 @@ Clone to a role directory like `roles/msmtp` and include:
           # Optional variables (defaults to gmail)
           msmtp_host: smtp.gmail.com
           msmtp_port: 587
+          # Optional custom tls path
+          tls_trust_file: /etc/ssl/certs/ca-certificates.crt
           # Specify "From" field
           msmtp_from: my name user@email
